@@ -1,0 +1,44 @@
+moverAsteroid:
+         push {r0,r1,r2,r3,r4,lr}
+         ldr r0, =planeta
+         mov r1, $longp
+         mov r4, #1
+
+mover:
+         //push {r0,r1,r2}
+         //mov r0, #' '
+         //mov r1, #'O'
+         //strb r2, [r0]
+         //sub r2, #55                   @Guardar posicion actual en R4
+         //strb r2, [r1]
+         //pop {r0,r1,r2}                 @Borrar V posicion anterior
+
+ //strb r2, [r3]
+         //add r0, #1
+         cmp r4, r1
+         beq finMoverAsteroid
+
+         ldrb r2, [r0]
+         cmp r2, #'O'
+         beq cambiar
+
+         add r0, #1
+         add r4, #1
+         bal mover
+
+cambiar:
+         mov r3, #' '
+        //mov r4, #'O'
+         //sub r0, #55
+         strb r3, [r0]
+         //sub r5 ,r0, #55
+         //strb r4, [r5]
+
+         add r0, #1
+         add r4, #1
+
+         bal mover
+
+finMoverAsteroid:
+         pop {r0,r1,r2,r3,r4,r5,lr}
+         bal leerComando
